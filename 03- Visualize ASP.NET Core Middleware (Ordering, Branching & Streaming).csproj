@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>_03__Visualize_ASP.NET_Core_Middleware__Ordering__Branching___Streaming_</RootNamespace>
+  </PropertyGroup>
+
+</Project>
