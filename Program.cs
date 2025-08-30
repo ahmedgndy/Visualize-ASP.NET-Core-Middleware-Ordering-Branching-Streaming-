@@ -10,7 +10,7 @@ builder.Services.AddRateLimiter(configureOptions =>
        {
            RateLimiter.PermitLimit = 2; // Allow 2 requests
            RateLimiter.Window = TimeSpan.FromSeconds(10); // Within a 10-second window
-    
+
            RateLimiter.QueueLimit = 0; // No queueing, extra requests are rejected immediately.
        });
 
@@ -20,10 +20,11 @@ builder.Services.AddRateLimiter(configureOptions =>
 var app = builder.Build();
 
 app.UseRateLimiter();
-
+app.UseRequestResponseLogging();
 
 app.MapGet("/api/resources", () => "This api resource is rate limited")
 .RequireRateLimiting("fixed");
+
 
 
 
