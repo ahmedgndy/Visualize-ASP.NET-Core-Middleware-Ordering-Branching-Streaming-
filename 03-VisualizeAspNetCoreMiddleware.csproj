@@ -4,7 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>_03__Visualize_ASP.NET_Core_Middleware__Ordering__Branching___Streaming_</RootNamespace>
+    <RootNamespace>03-VisualizeAspNetCoreMiddleware</RootNamespace>
   </PropertyGroup>
 
 </Project>
