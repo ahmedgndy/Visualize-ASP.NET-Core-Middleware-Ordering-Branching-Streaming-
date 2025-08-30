@@ -10,4 +10,8 @@ public static class CustomMiddlewareExtensions
     {
         return builder.UseMiddleware<AdminMiddleware>();
     }
+
+    
 }
+
+        

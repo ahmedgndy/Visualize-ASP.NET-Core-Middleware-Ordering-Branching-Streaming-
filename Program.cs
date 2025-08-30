@@ -23,6 +23,7 @@ builder.Services.AddHealthChecks();
 var app = builder.Build();
 
 app.UseRateLimiter();
+/// logs every request
 app.UseRequestResponseLogging();
 
 app.MapGet("/api/resources", () => "This api resource is rate limited")
@@ -35,8 +36,18 @@ app.UseWhen(
     ctx => ctx.Request.Path.StartsWithSegments("/sensitive"),
     branch =>
     {
-
-        branch.UseMiddleware<RequestResponseLoggingMiddleware>();
+        // make a middle ware for sensitive data
+        branch.Use(async (context, next) =>
+        {
+            // Log the request path
+            Console.WriteLine($"Sensitive request made to: {context.Request.Path}");
+            await next(context);
+        });
+        
+        branch.Run(async context =>
+        {
+            await context.Response.WriteAsync("Sensitive data accessed!");
+        });
     }
     );
 

@@ -15,9 +15,16 @@ public class RequestResponseLoggingMiddleware
  {
      // Log request information
      _logger.LogInformation("Handling request: {Method} {Path}", context.Request.Method, context.Request.Path);
-
-     // Call the next middleware in the pipeline
-     await _next(context);
+        try
+        {
+            // Call the next middleware in the pipeline
+            await _next(context);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An error occurred while processing the request");
+            throw;
+        }
 
      // Log response information
      _logger.LogInformation("Finished handling request: {Method} {Path}", context.Request.Method, context.Request.Path);
